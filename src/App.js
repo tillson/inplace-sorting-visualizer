@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AVLWidget from './AVLWidget.js';
+import SortWidget from './SortWidget.js';
 import NavBar from './NavBar.js';
 import './App.css';
 

@@ -12,7 +12,7 @@ for line in lines:
     initial = line.split('*')[1]
     testId = testDesc.split(' - ')[0][-3:]
     data[testId] = {
-        "initial": initial,
+        "initial": json.loads(initial),
         "desc": testDesc,
         "string": string
     }
