@@ -4,12 +4,17 @@ data = {}
 
 lines = open('src/data.json').read().split('\n')
 for line in lines:
-    parts = line.split('=')
-    if len(parts) < 2:
+    if len(line) == 0:
         continue
-    data[parts[0].split(':')[1]] = {
-        "string": parts[0],
-        "desc": parts[1]
+    print line
+    string = line.split('=')[1].split('#')[0]
+    testDesc = line.split('#')[1].split('*')[0]
+    initial = line.split('*')[1]
+    testId = testDesc.split(' - ')[0][-3:]
+    data[testId] = {
+        "initial": initial,
+        "desc": testDesc,
+        "string": string
     }
 
 open('src/data.json', 'w').write(json.dumps(data))

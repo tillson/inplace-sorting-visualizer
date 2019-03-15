@@ -8,8 +8,8 @@ class App extends Component {
     return (
       <div className="App">
       <NavBar />
-        <div className="container-fluid avl-container">
-          <AVLWidget></AVLWidget>
+        <div className="container-fluid sort-container">
+          <SortWidget></SortWidget>
         </div>
       </div>
     );

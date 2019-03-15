@@ -28,8 +28,7 @@ Example:
 [0, 1, 2, 3, 4, 5, 7, 8, 6, 9, ]
 [0, 1, 2, 3, 4, 5, 7, 6, 8, 9, ]
 [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ]
-2:3|1:2|3:4|2:3||4:5||5:6|4:5|3:4||6:7||7:8|6:7|5:6||8:9|7:8|6:7
-
-(versioning and test case information is inserted, the string gets base-64 encoded, and it passed to the website as a GET param)
-http://localhost:8080/?test=MS4wOjAuMDI6M3wxOjJ8Mzo0fDI6M3x8NDo1fHw1OjZ8NDo1fDM6NHx8Njo3fHw3Ojh8Njo3fDU6Nnx8ODo5fDc6OHw2Ojc=
+1.0:0.0=2:3|1:2|3:4|2:3||4:5||5:6|4:5|3:4||6:7||7:8|6:7|5:6||8:9|7:8|6:7
+-- string gets base64 encoded and is passed to the site as a get param --
+http://localhost:3000/?test=MS4wOjAuMD0yOjN8MToyfDM6NHwyOjN8fDQ6NXx8NTo2fDQ6NXwzOjR8fDY6N3x8Nzo4fDY6N3w1OjZ8fDg6OXw3Ojh8Njo3
 ```
