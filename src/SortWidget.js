@@ -18,7 +18,7 @@ class SortWidget extends React.Component {
                 <div className="welcome">
                     <h2>SortingTestsTG.java</h2>
                     {/* <p>To get started, download the tests from <a href="https://github.gatech.edu/gist/tgalloway7/68db1a275ed8899469a2b055e4b96247">the Georgia Tech GitHub</a> (must be logged in).</p> */}
-                    <p><a href="/?test=MS4wOjAuMD0yOjN8MToyfDM6NHwyOjN8fDQ6NXx8NTo2fDQ6NXwzOjR8fDY6N3x8Nzo4fDY6N3w1OjZ8fDg6OXw3Ojh8Njo3">Example</a></p>
+                    <p><a href="/?test=MS4wOjEuMD05OjF8NDoxfDk6Mnw0OjJ8fDk6N3x8OTozfDc6M3w0OjN8fDk6OHx8OTo1fDg6NXw3OjV8fDk6Nnw4OjZ8Nzo2">Example</a></p>
                     <br />
                     <p>Use the visualizer for your own implementation:
                         <code><pre>
