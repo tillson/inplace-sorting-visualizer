@@ -40,11 +40,14 @@ class SortWidget extends React.Component {
                                 <a href='https://github.gatech.edu/gist/tgalloway7/68db1a275ed8899469a2b055e4b96247'>the Georgia Tech GitHub.</a>]}>
                             </Alert>
                 }
-                <h4 className="error">Failed: { this.state.data.successfulTestData ? this.state.data.successfulTestData.desc : ''}</h4>
+                <h4 className="error">Failed: { this.state.data.desc ? this.state.data.desc : ''}</h4>
                 <div className="row avl-row">
                 <div className="col-md-9">
                         <h6>Here's what your implementation does:</h6>
-                        <SortVisualization data={ this.state.data } name="testSort" width="600" height="200"></SortVisualization>
+                        <SortVisualization initial={ this.state.data.initial } operations={ this.state.data.testOperations } name="testSort" width="600" height="175"></SortVisualization>
+
+                        <h6>Here's what it should do:</h6>
+                        <SortVisualization initial={ this.state.data.initial } operations={ this.state.data.actualOperations } name="actualSort" width="600" height="175"></SortVisualization>
                     </div>
                 </div>
             </div>
@@ -60,15 +63,12 @@ class SortWidget extends React.Component {
             var dataObj = {
                 version: parseFloat(meta[0]),
                 testId: meta[1],
-                operations: dataString.split('=')[1].split('|'),
-                // initialData: treeObject,
-                // mutations:
+                testOperations: dataString.split('=')[1].split('|')
             }
-            var passedData = this.getSuccessfulTestData(dataObj);
-            if (passedData) {
-                dataObj.workingArray = passedData.initial;
-                dataObj.successfulTestData = this.getSuccessfulTestData(dataObj)
-            }
+            var successData = this.getSuccessfulTestData(dataObj);
+            dataObj.initial = successData.initial;
+            dataObj.actualOperations = successData.operations;
+            dataObj.desc = successData.desc;
             return dataObj;
         } else {
             return null;
@@ -81,6 +81,7 @@ class SortWidget extends React.Component {
             if (!successfulTestData) {
                 return null;
             }
+            successfulTestData.operations = successfulTestData.string.split('|');
             return successfulTestData
         } else {
             return null;

@@ -9,6 +9,7 @@ class SortVisualization extends React.Component {
             name: props.name,
             d3Data: [],
             compares: 0,
+            svg: undefined
         };
     }
 
@@ -16,8 +17,6 @@ class SortVisualization extends React.Component {
         return (
             <div className='svg-container'>
                 <p><b>Comparisons: { this.state.compares } </b></p>
-                <br />
-                <br />
             </div>
         )
     }
@@ -32,7 +31,7 @@ class SortVisualization extends React.Component {
     }
 
     setupD3Obj() {
-        var initialArray = this.props.data.workingArray;
+        var initialArray = this.props.initial;
         var dx = this.props.width / initialArray.length;
         var x = 0;
         for (var i = 0; i < initialArray.length; i++) {
@@ -53,16 +52,16 @@ class SortVisualization extends React.Component {
         if (this.state.drawn) {
             return;
         }
-        this.setState({ drawn: true });
-        const svg = d3.select(ReactDOM.findDOMNode(this)).append('svg')
+        var svg = d3.select(ReactDOM.findDOMNode(this))
+            .append('svg')
             .attr("preserveAspectRatio", "xMinYMin meet")
-            .attr("viewBox", "0 0 " + this.props.width + "," + this.props.height)
-
+            .attr("viewBox", "0 0 " + this.props.width + "," + this.props.height);
+        this.setState({ drawn: true, svg: svg });
         var g = svg.selectAll('square')
             .data(this.state.d3Data)
             .enter()
             .append('g')
-            .attr('id', function(d) { return 'name-' + d.name })
+            .attr('id', (d) => { return this.state.name + '-' + d.name })
             // .attr("transform", function(d, i) { return "translate(0," + i * barHeight + ")"; });
         g.append('rect')
             .attr('class', 'square')
@@ -89,11 +88,12 @@ class SortVisualization extends React.Component {
     }
 
     doSwap(iteration) {
-        if (iteration >= this.props.data.operations.length) {
+
+        if (iteration >= this.props.operations.length) {
             console.log('done');
             return;
         }
-        var operation = this.props.data.operations[iteration].split(':');
+        var operation = this.props.operations[iteration].split(':');
         this.setState({ compares: iteration + 1 });
         if (operation.length === 1) {
             this.doSwap(iteration + 1);
@@ -103,8 +103,8 @@ class SortVisualization extends React.Component {
         var swap2 = operation[1];
         console.log(operation);
 
-        var swap1Obj = d3.select('#name-' + swap1)
-        var swap2Obj = d3.select('#name-' + swap2)
+        var swap1Obj = d3.select('#' + this.state.name + '-' + swap1)
+        var swap2Obj = d3.select('#' + this.state.name + '-' + swap2)
         var swap1x = swap1Obj.datum().x;
         var swap2x = swap2Obj.datum().x;
 
